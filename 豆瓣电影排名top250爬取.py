@@ -7,8 +7,7 @@ import requests
 from lxml import etree
 
 n=[0,25,50,75,100,125,150,175,200,225]
-#n=[0]
-for n in n :
+for n in n :#共循环10次，每次获取25部电影信息
 	url='https://movie.douban.com/top250?start='+str(n)+'&filter='
 	headers={'User-Agent':'Mozilla/5.0(Macintosh;Intel Mac OS X 10_13_3)AppleWebkit/537.36(KHTML,like Gecko)Chrome/65.0.3325.162 Safari/537.36'}
 	html=requests.get(url,headers=headers)
@@ -20,7 +19,7 @@ for n in n :
 	s=e.xpath('//span[@class="rating_num"]/text()')#获取该电影豆瓣评分，自动储存在一个列表内
 	lj=e.xpath('//div[@class="hd"]/a/@href')#获取在电影详情页面的链接，自动储存在一个列表内
 	for i in range(0,25):
-		print('电影排名:'+str(p[i]))#第1次循环时，i=0，获取电影排名列表里的第1个
+		print('电影排名:'+str(p[i]))#第1次循环时，i=0，打印出电影排名列表内，第1部电影的排名
 		print('电影名称:'+str(h[i]))
 		print('豆瓣评分:'+str(s[i]))
 		print('详情链接:'+str(lj[i]))
